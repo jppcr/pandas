@@ -1223,6 +1223,11 @@ class TestIndex(Base):
         result = index.sortlevel(ascending=False)
         tm.assert_index_equal(result[0], expected)
 
+    def test_diff(self):
+        index = Index([1, 2])
+        result = index.diff()
+        assert result[1] == 1
+
 
 class TestMixedIntIndex(Base):
     # Mostly the tests from common.py for which the results differ

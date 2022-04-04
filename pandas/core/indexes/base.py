@@ -7184,6 +7184,11 @@ class Index(IndexOpsMixin, PandasObject):
                 stacklevel=find_stack_level(),
             )
 
+    # ----------------------------------------------------------------------
+    # Time series-related
+    def diff(self, periods: int = 1) -> Index:
+        return Index(self.to_series().diff(periods))
+
 
 def ensure_index_from_sequences(sequences, names=None) -> Index:
     """
