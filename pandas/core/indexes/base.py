@@ -7187,6 +7187,40 @@ class Index(IndexOpsMixin, PandasObject):
     # ----------------------------------------------------------------------
     # Time series-related
     def diff(self, periods: int = 1) -> Index:
+        """
+        First discrete difference of object.
+
+        Calculates the difference of a Index element compared with another
+        element in the Index (default is element in previous row).
+
+        Parameters
+        ----------
+        periods
+            Periods to shift for calculating difference, accepts negative values.
+
+        Returns
+        -------
+        Index
+
+        See Also
+        --------
+        Series.diff : First discrete difference of object.
+        DataFrame.diff : First discrete difference of object.
+
+        Examples
+        --------
+
+        >>> s = pd.Index([1, 2, 1])
+        >>> s.diff()
+        Float64Index([nan, 1.0, -1.0], dtype='float64')
+
+        >>> s = pd.DatetimeIndex(
+                ["2022-04-04", "2022-04-06", "2022-04-07", "2022-04-08"]
+            )
+        >>> s.diff(2)
+        TimedeltaIndex([NaT, NaT, '3 days', '2 days'],
+            dtype='timedelta64[ns]', freq=None)
+        """
         return Index(self.to_series().diff(periods))
 
 
